@@ -1,7 +1,7 @@
 import icon from '../../../assets/icons/arrow.png'
 
 const ServiceCard = ({service}) => {
-    console.log(service)
+   
     const {title,img,price} = service
     return (
         <div className="card w-96 bg-base-100 shadow-xl">

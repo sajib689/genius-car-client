@@ -3,7 +3,13 @@ import logo from '../../assets/logo.svg'
 import bagIcon from '../../assets/icons/bag.png'
 import searchIcon from '../../assets/icons/search.png'
 import { Link } from "react-router-dom";
+import { useContext } from 'react';
+import { AuthContext } from '../../Providers/AuthProviders';
 const Navbar = () => {
+  const {user,logOut} = useContext(AuthContext)
+  const handleLogOut = () => {
+    logOut()
+  }
   return (
     <div className="navbar bg-base-100 container mx-auto">
       <div className="navbar-start">
@@ -66,10 +72,19 @@ const Navbar = () => {
           <li>
             <Link>Contact</Link>
           </li>
+          {
+            user ? 
+            <li><Link onClick={handleLogOut}>Sign Out</Link></li>
+            :
+            <li>
+            <Link to='/login'>Login</Link>
+          </li>
+          }
         </ul>
       </div>
       <div className="navbar-end">
         <div className="flex me-7">
+          <p>{user?.email}</p>
           <img className="me-2" src={bagIcon} alt="bagIcon" />
           <img src={searchIcon} alt="searchIcon" />
         </div>
