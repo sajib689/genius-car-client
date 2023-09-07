@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import icon from '../../../assets/icons/arrow.png'
 
 const ServiceCard = ({service}) => {
@@ -10,7 +11,7 @@ const ServiceCard = ({service}) => {
           <h2 className="card-title text-[20px] font-bold">{title}</h2>
           <p className="text-[16px] text-orange-500 font-bold">Price: {price}</p>
           <div className="card-actions justify-end">
-            <img src={icon} alt="" />
+            <Link to='/register'><img src={icon} alt="" /></Link>
           </div>
         </div>
       </div>

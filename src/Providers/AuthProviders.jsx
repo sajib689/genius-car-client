@@ -9,16 +9,20 @@ const AuthProviders = ({children}) => {
     const [loading, setLoading] = useState(true)
     const googleProvider = new GoogleAuthProvider()
     const signWithForm = ( email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth,email,password)
         
     }
     const signInWithForm = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
     const googleSignIn = () => {
+        setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
     const logOut = () => {
+        setLoading(true)
         signOut(auth)
     }
     useEffect(() => {

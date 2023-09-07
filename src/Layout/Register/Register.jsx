@@ -35,7 +35,7 @@ const Register = () => {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Email already in use!',
+            text: `${error.message}`,
            
           })
         }

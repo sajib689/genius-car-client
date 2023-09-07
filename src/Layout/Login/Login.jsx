@@ -35,7 +35,7 @@ const Login = () => {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Email or Password wrong!',
+          text: `${error.message}`,
          
         })
       }
