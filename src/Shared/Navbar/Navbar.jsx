@@ -1,15 +1,14 @@
-
-import logo from '../../assets/logo.svg'
-import bagIcon from '../../assets/icons/bag.png'
-import searchIcon from '../../assets/icons/search.png'
+import logo from "../../assets/logo.svg";
+import bagIcon from "../../assets/icons/bag.png";
+import searchIcon from "../../assets/icons/search.png";
 import { Link } from "react-router-dom";
-import { useContext } from 'react';
-import { AuthContext } from '../../Providers/AuthProviders';
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProviders";
 const Navbar = () => {
-  const {user,logOut} = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext);
   const handleLogOut = () => {
-    logOut()
-  }
+    logOut();
+  };
   return (
     <div className="navbar bg-base-100 container mx-auto">
       <div className="navbar-start">
@@ -35,24 +34,24 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-            <Link>Home</Link>
-          </li>
-          <li>
-          <Link>About</Link>
-          </li>
-          <li>
-            <Link>Services</Link>
-          </li>
-          <li>
-            <Link>Blog</Link>
-          </li>
-          <li>
-            <Link>Contact</Link>
-          </li>
+              <Link>Home</Link>
+            </li>
+            <li>
+              <Link>About</Link>
+            </li>
+            <li>
+              <Link>Services</Link>
+            </li>
+            <li>
+              <Link>Blog</Link>
+            </li>
+            <li>
+              <Link>Contact</Link>
+            </li>
           </ul>
         </div>
         <div>
-        <img src={logo} alt="" />
+          <img src={logo} alt="" />
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -61,7 +60,7 @@ const Navbar = () => {
             <Link>Home</Link>
           </li>
           <li>
-          <Link>About</Link>
+            <Link>About</Link>
           </li>
           <li>
             <Link>Services</Link>
@@ -72,14 +71,15 @@ const Navbar = () => {
           <li>
             <Link>Contact</Link>
           </li>
-          {
-            user ? 
-            <li><Link onClick={handleLogOut}>Sign Out</Link></li>
-            :
+          {user ? (
             <li>
-            <Link to='/login'>Login</Link>
-          </li>
-          }
+              <Link onClick={handleLogOut}>Sign Out</Link>
+            </li>
+          ) : (
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          )}
         </ul>
       </div>
       <div className="navbar-end">
@@ -88,7 +88,9 @@ const Navbar = () => {
           <img className="me-2" src={bagIcon} alt="bagIcon" />
           <img src={searchIcon} alt="searchIcon" />
         </div>
-        <Link className="btn text-orange-500 border border-orange-600">Appointment</Link>
+        <Link className="btn text-orange-500 border border-orange-600">
+          Appointment
+        </Link>
       </div>
     </div>
   );

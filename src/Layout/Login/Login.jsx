@@ -8,7 +8,7 @@ import { AuthContext } from '../../Providers/AuthProviders';
 import Swal from 'sweetalert2';
 
 const Login = () => {
-  const {signInWithForm} = useContext(AuthContext)
+  const {signInWithForm,googleSignIn} = useContext(AuthContext)
   const [error, setError] = useState('')
   const handleSignIn = e => {
     e.preventDefault();
@@ -39,6 +39,16 @@ const Login = () => {
          
         })
       }
+    })
+  }
+  const handleGoogle = () => {
+    googleSignIn()
+    .then(result => {
+      const user = result.user
+      console.log(user)
+    })
+    .catch(error => {
+      console.error(error.message)
     })
   }
     return (
@@ -74,7 +84,7 @@ const Login = () => {
                 <p className='mt-2 text-center text-[14px] text-[#444] font-[500]'>Or Sign Up with</p>
               <div className='flex  justify-center items-center'>
                 <img className='w-7 mr-2 mt-3' src={fb} alt="" />
-                <img className='w-7 mr-2 mt-3' src={google} alt="" />
+                <Link onClick={handleGoogle}><img className='w-7 mr-2 mt-3' src={google} alt="" /></Link>
                 <img className='w-7 mr-2 mt-3' src={linkdin} alt="" />
               </div>
               <p className='text-center mt-4 text-[14px] font-[400]'>Have an account? <Link to='/register' className='text-orange-600 font-bold'> Sign In</Link></p>

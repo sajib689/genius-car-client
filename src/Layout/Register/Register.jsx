@@ -7,7 +7,7 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProviders';
 import Swal from 'sweetalert2';
 const Register = () => {
-  const {signWithForm,user} = useContext(AuthContext)
+  const {signWithForm,googleSignIn} = useContext(AuthContext)
   const [error, setError] = useState('')
   const handleSignUp = e => {
         e.preventDefault();
@@ -41,6 +41,17 @@ const Register = () => {
         }
       })
         
+  }
+  
+  const handleGoogle = () => {
+    googleSignIn()
+    .then(result => {
+      const user = result.user
+      console.log(user)
+    })
+    .catch(error => {
+      console.error(error.message)
+    })
   }
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -80,7 +91,7 @@ const Register = () => {
                 <p className='mt-2 text-center text-[14px] text-[#444] font-[500]'>Or Sign Up with</p>
               <div className='flex  justify-center items-center'>
                 <img className='w-7 mr-2 mt-3' src={fb} alt="" />
-                <img className='w-7 mr-2 mt-3' src={google} alt="" />
+               <Link onClick={handleGoogle}> <img className='w-7 mr-2 mt-3' src={google} alt="" /> </Link>
                 <img className='w-7 mr-2 mt-3' src={linkdin} alt="" />
               </div>
               <p className='text-center mt-4 text-[14px] font-[400]'>Already have an account? <Link to='/login' className='text-orange-600 font-bold'>Login</Link></p>
