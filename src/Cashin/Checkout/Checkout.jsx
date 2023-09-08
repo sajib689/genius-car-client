@@ -1,4 +1,5 @@
 import React from "react";
+import { useLoaderData } from "react-router-dom";
 const backgroundStyle = {
     backgroundImage: 'url("https://imagizer.imageshack.com/img924/6646/04vql1.png")',
     backgroundSize: 'cover',
@@ -7,6 +8,9 @@ const backgroundStyle = {
   };
   
 const Checkout = () => {
+    const service = useLoaderData()
+    const {_id, title, price} = service
+    console.log(title)
   return (
     <div className="container mx-auto">
       {/* banner */}
@@ -25,10 +29,10 @@ const Checkout = () => {
       </div>
       <div className="w-1/2 mx-auto mt-20">
         <div className="flex flex-col">
-            <label htmlFor="">First Name</label>
+            <label htmlFor="">Name</label>
         <input type="text" placeholder="Enter you first name" className="input input-bordered w-full max-w-lg" />
-        <label htmlFor="">Last Name</label>
-        <input type="text" placeholder="Enter you last name" className="input input-bordered w-full max-w-lg" />
+        <label htmlFor="">Date</label>
+        <input type="date" placeholder="Enter you last name" className="input input-bordered w-full max-w-lg" />
         </div>
         <div className="flex flex-col">
         <label htmlFor="">Phone</label>
