@@ -8,6 +8,8 @@ import Billing from "../Layout/Billing/Billing";
 import PrivateRoute from './../PrivateRoute/PrivateRoute';
 import Services from "../Pages/Home/Services/Services";
 import Orders from './../Pages/Orders/Orders';
+import AddSystem from "../Layout/AddSystem/AddSystem";
+import AddNewService from './../Pages/AddNewService/AddNewService';
 
 const router = createBrowserRouter([
   {
@@ -46,9 +48,18 @@ const router = createBrowserRouter([
       {
         path: '/orders',
         element: <Orders></Orders>,
-        loader: () => fetch(`http://localhost:3000/orders`)
       }
     ]
+  },
+  {
+    path: '/',
+    element: <AddSystem></AddSystem>,
+    children: [
+      {
+      path: '/addsystem',
+      element:<AddNewService></AddNewService>
+      }
+    ],
   }
 ]);
 export default router;

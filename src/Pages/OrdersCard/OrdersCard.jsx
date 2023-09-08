@@ -1,12 +1,14 @@
 import React from "react";
-
-const OrdersCard = ({ order }) => {
+import { Link } from "react-router-dom";
+import del from '../../assets/icons/delete.svg'
+const OrdersCard = ({ order ,handleDelete}) => {
   const { _id, service, price, img, date } = order;
+  
   return (
     <tr>
       <th>
         <label>
-          <input type="checkbox" className="checkbox" />
+          <Link onClick={() => handleDelete(_id)}><img  className="bg-orange-700 p-2 rounded" src={del} alt="" /></Link>
         </label>
       </th>
       <td>
