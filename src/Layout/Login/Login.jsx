@@ -2,7 +2,7 @@ import img from '../../assets/images/login/login.svg'
 import fb from '../../assets/icons/fb.png'
 import google from '../../assets/icons/google 1.png'
 import linkdin from '../../assets/icons/linkdin.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProviders';
 import Swal from 'sweetalert2';
@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 const Login = () => {
   const {signInWithForm,googleSignIn} = useContext(AuthContext)
   const [error, setError] = useState('')
+  const navigate = useNavigate()
   const handleSignIn = e => {
     e.preventDefault();
     const form = e.target 
@@ -28,6 +29,7 @@ const Login = () => {
         })
         setError('')
         form.reset()
+        navigate('/services')
        }
     })
     .catch(error => {
