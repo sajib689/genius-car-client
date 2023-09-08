@@ -13,7 +13,7 @@ const backgroundStyle = {
 const Checkout = () => {
   const {user} = useContext(AuthContext)
   const d = useLoaderData();
-  const { _id, title, price } = d;
+  const { _id, title, price,img } = d;
   const handleOrder = e => {
     e.preventDefault();
     const form = e.target
@@ -24,7 +24,7 @@ const Checkout = () => {
     const phone = form.phone.value
     const email = form.email.value
     const address = form.address.value
-    const order = {name, date, service, price, phone, email, address}
+    const order = {name, date, service, price, phone, email, address, img}
   
     fetch('http://localhost:3000/orders',{
         method: 'POST',
@@ -65,12 +65,14 @@ const Checkout = () => {
             type="text"
             placeholder="Enter you first name"
             className="input input-bordered w-full max-w-lg"
+            required
           />
           <label htmlFor="">Date</label>
           <input
           name="date"
             type="date"
             className="input input-bordered w-full max-w-lg"
+            required
           />
           <label htmlFor="">Service</label>
           <input
@@ -96,6 +98,7 @@ const Checkout = () => {
             type="text"
             placeholder="Enter your phone"
             className="input input-bordered w-full max-w-lg"
+            required
           />
           <label htmlFor="">Email</label>
           <input
@@ -114,6 +117,7 @@ const Checkout = () => {
             name="address"
             rows="4"
             placeholder="Type your address here..."
+            required
           />{" "}
         </div>
         <input
