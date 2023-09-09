@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import OrdersCard from "../OrdersCard/OrdersCard";
 import { AuthContext } from "../../Providers/AuthProviders";
@@ -44,6 +43,26 @@ const Orders = () => {
         }
       });
   };
+  const handleConfirm = _id => {
+    fetch(`http://localhost:3000/orders/${_id}`,{
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({status: 'confirm'})
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      if(data.modifiedCount > 0) {
+        const remaining = orders.filter(order => order._id !== _id)
+        const updated = orders.find(order => order._id === _id)
+        updated.status= 'confirm'
+        const newOrders = [updated, ...remaining]
+        setOrders(newOrders)
+      }
+    })
+  };
   return (
     <div className="mx-auto container">
       <div className="hero h-[300px] " style={backgroundStyle}>
@@ -78,7 +97,8 @@ const Orders = () => {
             {orders.map((order) => (
               <OrdersCard key={order._id} 
               order={order}
-              handleDelete={handleDelete}></OrdersCard>
+              handleDelete={handleDelete}
+              handleConfirm={handleConfirm}></OrdersCard>
             ))}
           </tbody>
         </table>
